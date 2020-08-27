@@ -6,28 +6,30 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-e1 = Employee.create(name: "e1")
-e2 = Employee.create(name: "e2")
-e3 = Employee.create(name: "e3")
-e4 = Employee.create(name: "e4")
-e5 = Employee.create(name: "e5")
+# e1 = Employee.create(name: "e1")
+# e2 = Employee.create(name: "e2")
+# e3 = Employee.create(name: "e3")
+# e4 = Employee.create(name: "e4")
+# e5 = Employee.create(name: "e5")
 
+# e1 = Employee.find(1)
+# e2 = Employee.find(2)
+# e3 = Employee.find(3)
+# e4 = Employee.find(4)
+# e5 = Employee.find(5)
+
+# e2.parent = e1
+# e3.parent = e1
+
+# e2.save
+# e3.save
+
+# e4.parent = e3
+# e5.parent = e3
+# e4.save
+# e5.save
+
+# get tree json
 e1 = Employee.find(1)
-e2 = Employee.find(2)
-e3 = Employee.find(3)
-e4 = Employee.find(4)
-e5 = Employee.find(5)
-
-e2.parent = e1
-e3.parent = e1
-
-e2.save
-e3.save
-
-e4.parent = e3
-e5.parent = e3
-e4.save
-e5.save
-
-e1.ancestors(from_depth: 0, to_depth: 2)
-e1.descendants(:from_depth => 0, :to_depth => 2)
+nodes = e1.subtree.arrange
+Employee.json_tree(nodes).to_json
