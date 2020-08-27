@@ -68,3 +68,4 @@ end
 - https://www.zybang.com/question/72735a97d19bb435de837e01a6a6387e.html
 - https://ruby-china.org/wiki/rails_plugin_ancestry_usage
 - https://github.com/stefankroes/ancestry
+- http://railscasts.com/episodes/262-trees-with-ancestry?view=comments
