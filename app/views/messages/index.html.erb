@@ -4,7 +4,8 @@
   <div class="message">
     <div class="created_at"><%= message.created_at.strftime("%B %d, %Y") %></div>
     <div class="content">
-      <%= message.content %>
+      <!-- <%= message.content %> -->
+      <%= nested_messages @messages.arrange(:order => :created_at) %>
     </div>
     <div class="actions">
       <%= link_to "Destroy", message, :confirm => "Are you sure?", :method => :delete %>

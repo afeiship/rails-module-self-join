@@ -1,4 +1,5 @@
 <%= form_for @message do |f| %>
+  <%= f.hidden_field :parent_id %>
   <p>
     <%= f.label :content, "New Message" %><br />
     <%= f.text_area :content, :rows => 8 %>

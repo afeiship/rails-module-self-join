@@ -1,7 +1,8 @@
 <% title "Message" %>
 
 <p>
-  <%= @message.content %>
+  <!-- <%= @message.content %> -->
+  <%= nested_messages @message.subtree.arrange(:order => :created_at) %>
 </p>
 
 <p><%= link_to "Back to All Messages", messages_path %></p>

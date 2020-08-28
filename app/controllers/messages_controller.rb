@@ -9,7 +9,7 @@ class MessagesController < ApplicationController
   end
 
   def new
-    @message = Message.new
+    @message = Message.new(:parent_id => params[:parent_id])
   end
 
   def create
