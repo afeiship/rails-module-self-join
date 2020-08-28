@@ -30,10 +30,10 @@ rails g migration add_ancestry_to_employee ancestry:string:index
 rake db:migrate
 ```
 
-## rols
-- 平级: equal
-- 上级: superior
-- 下级: subordinate
+## roles
+- 平级: equal         - (null)
+- 上级: superior      - (parent)
+- 下级: subordinate   - (children)
 - 职员: employee
 
 ## tree json
