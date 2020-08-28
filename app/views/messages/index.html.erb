@@ -1,5 +1,6 @@
 <% title "Messages" %>
 
 <%= nested_messages @messages.arrange(:order => :created_at) %>
+<%= paginate @messages %>
 
 <%= render "form" %>
