@@ -9,24 +9,13 @@ rails g model Employee name:string
 
 # 2. Ass for model
 class Employee < ApplicationRecord
-  has_many :children, class_name: "Employee",
-                          foreign_key: "parent_id"
-  belongs_to :parent, class_name: "Employee", optional: true
   has_ancestry
 end
 
 # 3. migration
-class CreateEmployees < ActiveRecord::Migration[5.0]
-  def change
-    create_table :employees do |t|
-      t.references :parent
-      t.timestamps
-    end
-  end
-end
+rails g migration add_ancestry_to_employee ancestry:string:index
 
 # 4. db migrate
-rails g migration add_ancestry_to_employee ancestry:string:index
 rake db:migrate
 ```
 
@@ -39,9 +28,6 @@ rake db:migrate
 ## tree json
 ```rb
 class Employee < ApplicationRecord
-  has_many :children, class_name: "Employee",
-                      foreign_key: "parent_id"
-  belongs_to :parent, class_name: "Employee", optional: true
   has_ancestry
 
   def tree
@@ -60,6 +46,50 @@ class Employee < ApplicationRecord
     end
   end
 end
+```
+
+## ap tree
+```shell
+irb(main):005:0> e1 = Employee.find(1)
+  Employee Load (0.5ms)  SELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?  [["id", 1], ["LIMIT", 1]]
+=> #<Employee id: 1, name: "e1", created_at: "2020-08-28 00:50:16", updated_at: "2020-08-28 00:50:16", ancestry: nil>
+irb(main):006:0> ap e1.tree
+  Employee Load (0.2ms)  SELECT "employees".* FROM "employees" WHERE (("employees"."ancestry" LIKE '1/%' OR "employees"."ancestry" = '1') OR "employees"."id" = 1)
+[
+    [0] {
+             :name => "e1",
+               :id => 1,
+        :parent_id => nil,
+         :children => [
+            [0] {
+                     :name => "e2",
+                       :id => 2,
+                :parent_id => 1,
+                 :children => []
+            },
+            [1] {
+                     :name => "e3",
+                       :id => 3,
+                :parent_id => 1,
+                 :children => [
+                    [0] {
+                             :name => "e4",
+                               :id => 4,
+                        :parent_id => 3,
+                         :children => []
+                    },
+                    [1] {
+                             :name => "e5",
+                               :id => 5,
+                        :parent_id => 3,
+                         :children => []
+                    }
+                ]
+            }
+        ]
+    }
+]
+=> nil
 ```
 
 

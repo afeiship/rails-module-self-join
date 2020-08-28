@@ -10,16 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_27_150429) do
+ActiveRecord::Schema.define(version: 2020_08_28_004945) do
 
   create_table "employees", force: :cascade do |t|
     t.string "name"
-    t.integer "parent_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "ancestry"
     t.index ["ancestry"], name: "index_employees_on_ancestry"
-    t.index ["parent_id"], name: "index_employees_on_parent_id"
   end
 
 end
