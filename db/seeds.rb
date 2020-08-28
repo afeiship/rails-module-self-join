@@ -30,9 +30,13 @@
 # e5.save
 
 # get tree json
-require "awesome_print"
+# require "awesome_print"
 
-e1 = Employee.find(1)
-ap e1.tree
+# e1 = Employee.find(1)
+# ap e1.tree
 # nodes = e1.subtree.arrange
 # Employee.json_tree(nodes).to_json
+
+# ----------- message seed
+# Message.create(content: "message content1.")
+# Message.create(content: "message content2.")
