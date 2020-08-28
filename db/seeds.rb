@@ -30,6 +30,9 @@
 # e5.save
 
 # get tree json
+require "awesome_print"
+
 e1 = Employee.find(1)
-nodes = e1.subtree.arrange
-Employee.json_tree(nodes).to_json
+ap e1.tree
+# nodes = e1.subtree.arrange
+# Employee.json_tree(nodes).to_json
