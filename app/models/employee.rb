@@ -1,19 +1,11 @@
 class Employee < ApplicationRecord
-  has_ancestry cache_depth: true
+  has_ancestry
 
-  def tree
-    nodes = subtree.arrange
-    Employee.json_tree(nodes)
-  end
+  include AncestryNode
 
-  def self.json_tree(nodes)
-    nodes.map do |node, sub_nodes|
-      {
-        name: node.name,
-        id: node.id,
-        parent_id: node.parent_id,
-        children: json_tree(sub_nodes).compact,
-      }
-    end
+  def self.node_iteratee(node)
+    {
+      name: node.name,
+    }
   end
 end
